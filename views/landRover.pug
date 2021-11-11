@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  - let landRovers = [{model:"THE NEW RANGE ROVER", price: 100000, color:"Red"},{model:"LAND ROVER DISCOVERY", price: 50000, color:"Blue"},{model:"DISCOVERY SPORT", price: 30000, color:"Grey"}]
+  - let landRovers = results;
   div(class="container-fluid mt-3")
   div(class="row")
     each landRover,index in landRovers

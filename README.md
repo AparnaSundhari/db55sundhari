@@ -1,8 +1,8 @@
-# fwb55sundhari
+# db55sundhari
 
 ### second assignment
 
-[Hosted at](https://fwb55sundhari.herokuapp.com/)
+[Hosted at](https://db55sundhari.herokuapp.com/)
 
 Class - landRover class landRovers{ 
 constructor(model, price, color){ 

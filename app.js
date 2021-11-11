@@ -9,7 +9,51 @@ var usersRouter = require('./routes/users');
 var landRoverRouter = require('./routes/landRover');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
+var landRover = require("./models/landRover");
+var resourceRouter = require('./routes/resource');
 
+// We can seed the collection if needed on server start
+async function recreateDB() {
+  // Delete everything
+  await landRover.deleteMany();
+  let instance1 = new landRover({
+      model: "THE NEW RANGE ROVER",
+      price: 100000,
+      color: "Red"
+  });
+  instance1.save(function(err, doc) {
+      if (err) return console.error(err);
+      console.log("First object saved")
+  });
+  let instance2 = new landRover({
+      model: "LAND ROVER DISCOVERY",
+      price: 50000,
+      color: "Blue"
+  });
+  instance2.save(function(err, doc) {
+      if (err) return console.error(err);
+      console.log("Second object saved")
+  });
+  let instance3 = new landRover({
+      model: "DISCOVERY SPORT",
+      price: 30000,
+      color: "Grey"
+  });
+  instance3.save(function(err, doc) {
+      if (err) return console.error(err);
+      console.log("Third object saved")
+  });
+}
+let reseed = true;
+if (reseed) { recreateDB(); }
+
+const connectionString = process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
 var app = express();
 
 // view engine setup
@@ -27,14 +71,15 @@ app.use('/users', usersRouter);
 app.use('/landRover', landRoverRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
