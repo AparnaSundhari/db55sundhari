@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1(id="title")= title
+  if (toShow == null)
+    h2 No instance to Display
+  else
+    - let landRoverid = toShow._id
+    - let model = toShow.model
+    - let price = toShow.price
+    - let color = toShow.color
+    div
+      div.row
+        div(class='costumeAttr mr-3') landRover ID is:
+        div(class='values spcl') #{landRoverid}
+      div.row
+        div(class='costumeAttr mr-3') landRover Type is:
+        div(class="values") #{model}
+      div.row
+        div(class='costumeAttr mr-3') landRover Cost is:
+        div(class="values") #{price}
+      div.row
+        div(class='costumeAttr mr-3') landRover color is:
+        div(class="values") #{color}

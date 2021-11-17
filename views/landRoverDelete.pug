@@ -1,0 +1,53 @@
+extends layout
+
+block content
+  h1= title
+
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let landRoverid = toShow._id
+    - let model = toShow.model
+    - let price = toShow.price
+    - let color = toShow.color
+    - let actionid = "/resource/landRover/" + landRoverid
+    script let actionid = "#{actionid}"
+    div
+      div.row
+        div(class='costumeAttr mr-3') Hotel ID is:
+        div #{landRoverid}
+      div.row
+        div(class='costumeAttr mr-3') Room Type is:
+        div #{model}
+      div.row
+        div(class='costumeAttr mr-3') Room price is:
+        div #{price}
+      div.row
+        div(class='costumeAttr mr-3') Hotel color is:
+        div #{color}
+
+    button(class="btn btn-primary" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary" onclick="cancel()") Cancel
+
+  script.
+    function cancel() {
+      // Go back to the home page for the costume collection
+      window.location.href='/landRover'
+    }
+  script.
+    function deleteOnid() {
+      console.log("starting delete")
+      // delete first
+      fetch(actionid, {
+        method: 'DELETE'      // Don't need a body for the delete
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Delete succeded")
+        window.location.href='/landRover'
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Delete failed " + error )
+      });
+    }
