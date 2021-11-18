@@ -14,7 +14,7 @@ block content
         div.mr-1 ID is
         div #{landRoverid}
     - let actionid = "/resource/landRover/" + landRoverid
-    form(id='landRoverForm', action= actionid, method="PUT")
+    form(class='container-fluid' id='landRoverForm', action= actionid, method="PUT")
         div.form-group
             label.costumeAttr(for='model') landRover Type
             input#model(type='text', name='model', value= model )
@@ -25,7 +25,7 @@ block content
             label.costumeAttr(for='color') landRover color
             input#color(type='text', name='color', value= color )
 
-        input(type="submit")
+        button(class='btn btn-primary' type="submit") Update
 
     script.
         document.forms['landRoverForm'].addEventListener('submit', (event) => {
