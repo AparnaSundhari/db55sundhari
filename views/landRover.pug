@@ -6,10 +6,16 @@ block content
   div(class="container-fluid mt-3")
   div(class="row")
     each landRover,index in landRovers
+      - let destination = `dispatch(\"/costumes/update?id=${landRover._id}\")`
         div(class="col-sm-4" onclick=`buy(${index})`) #{landRover.model} - #{landRover.price} - #{landRover.color}
+        button.btn( class="btn-success ml-1", onclick= destination) Update
     script.
      
       function buy(itemNo)
       {
         alert(`You purchased Item ${itemNo+1}`)
+      }
+      function dispatch(path)
+      {
+        window.location.href=path
       }
