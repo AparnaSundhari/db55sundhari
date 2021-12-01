@@ -6,9 +6,13 @@ block content
   div(class="container-fluid mt-3")
   div(class="row")
     each landRover,index in landRovers
-      - let destination = `dispatch(\"/costumes/update?id=${landRover._id}\")`
-        div(class="col-sm-4" onclick=`buy(${index})`) #{landRover.model} - #{landRover.price} - #{landRover.color}
-        button.btn( class="btn-success ml-1", onclick= destination) Update
+      - let destination = `dispatch(\"/landRover/update?id=${landRover._id}\")`
+      - let detail = `dispatch(\"/landRover/detail?id=${landRover._id}\")`
+      - let del = `dispatch(\"/landRover/delete?id=${landRover._id}\")`
+        div(class="col-md-6" onclick=`buy(${index})`) #{landRover.model} - #{landRover.price} - #{landRover.color}
+        button.btn( class="btn-success m-1", onclick= destination) Update
+        button.btn(class="btn-info m-1", onclick= detail) View
+        button.btn(class="btn-danger m-1", onclick= del) Delete
     script.
      
       function buy(itemNo)

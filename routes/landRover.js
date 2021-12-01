@@ -16,11 +16,11 @@ const secured = (req, res, next) => {
     /* GET update costu
     /* GET costumes */
 router.get('/', landRover_controller.landRover_view_all_Page);
-router.get('/detail', landRover_controller.landRover_view_one_Page);
+router.get('/detail',secured, landRover_controller.landRover_view_one_Page);
 /* GET create costume page */
-router.get('/create', landRover_controller.landRover_create_Page);
+router.get('/create',secured, landRover_controller.landRover_create_Page);
 /* GET create update page */
-router.get('/update', landRover_controller.landRover_update_Page);
+router.get('/update',secured, landRover_controller.landRover_update_Page);
 /* GET create costume page */
-router.get('/delete', landRover_controller.landRover_delete_Page);
+router.get('/delete',secured, landRover_controller.landRover_delete_Page);
 module.exports = router;
